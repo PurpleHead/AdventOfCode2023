@@ -6,17 +6,17 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.OptionalInt;
 
-public class Trebutchet {
+public class TrebutchetOne {
 
     public static void main(String... args) throws URISyntaxException {
-        FileLoader loader = new FileLoader("/one/p1");
+        FileLoader loader = new FileLoader("/one");
         List<String> lines = loader.loadLinesOfFile("input.txt");
         int sum = lines.stream()
                 .map(s -> {
                     StringBuilder builder = new StringBuilder(s);
                     String reversed = builder.reverse().toString();
-                    Integer first = Trebutchet.findFirstIntegerInString(s);
-                    Integer last = Trebutchet.findFirstIntegerInString(reversed);
+                    Integer first = TrebutchetOne.findFirstIntegerInString(s);
+                    Integer last = TrebutchetOne.findFirstIntegerInString(reversed);
                     // We can assume that these Integers aren't null
                     return String.format("%s%s", first, last);
                 })
