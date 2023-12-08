@@ -19,6 +19,10 @@ public class FileLoader {
         this.folder = folder;
     }
 
+    public List<String> loadLinesOfFile () {
+        return this.loadLinesOfFile("/input.txt");
+    }
+
     public List<String> loadLinesOfFile (String filename) {
         try {
             File file = this.getFile(filename);

@@ -11,7 +11,7 @@ public class TrebutchetTwo {
 
     public static void main(String[] args) throws URISyntaxException {
         FileLoader loader = new FileLoader("/one");
-        List<String> lines = loader.loadLinesOfFile("input.txt");
+        List<String> lines = loader.loadLinesOfFile();
         initMap();
         int sum = lines.stream()
                 .map(TrebutchetTwo::findNumberIndexes)

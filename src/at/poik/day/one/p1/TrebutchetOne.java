@@ -10,7 +10,7 @@ public class TrebutchetOne {
 
     public static void main(String... args) throws URISyntaxException {
         FileLoader loader = new FileLoader("/one");
-        List<String> lines = loader.loadLinesOfFile("input.txt");
+        List<String> lines = loader.loadLinesOfFile();
         int sum = lines.stream()
                 .map(s -> {
                     StringBuilder builder = new StringBuilder(s);
