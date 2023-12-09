@@ -6,7 +6,6 @@ import at.poik.day.two.model.Game;
 import at.poik.day.two.model.GameSet;
 import at.poik.io.FileLoader;
 
-import java.awt.*;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.List;
