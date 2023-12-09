@@ -15,4 +15,13 @@ public class EnginePart {
     public int getNumberInt() {
         return Integer.parseInt(number);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof EnginePart other) {
+            return other.startIndex.equals(this.startIndex) &&
+                    other.endIndex.equals(this.endIndex);
+        }
+        return false;
+    }
 }
