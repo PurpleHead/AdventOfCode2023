@@ -13,20 +13,32 @@ public class ScratchcardService {
         var fileLoader = new FileLoader("/four");
         var lines = fileLoader.loadLinesOfFile();
         return lines.stream()
-                .map(l -> l.split(":")[1].trim()) // Remove "Card xxx"
-                .map(l -> l.split("\\|")) // Split winning and actual numbers
-                .map(array -> Scratchcard.builder()
-                        .winningNumbers(convertToIntegerList(array[0].trim().split(" ")))
-                        .actualNumbers(convertToIntegerList(array[1].trim().split(" ")))
-                        .build()
-                )
+                .map(l -> {
+                    var firstSplit = l.split(":");
+                    int cardId = extractCardId(firstSplit[0].trim());
+                    var secondSplit = firstSplit[1].trim().split("\\|");
+                    return Scratchcard.builder()
+                            .cardId(cardId)
+                            .winningNumbers(convertToIntegerList(secondSplit[0].trim().split(" ")))
+                            .actualNumbers(convertToIntegerList(secondSplit[1].trim().split(" ")))
+                            .build();
+                })
                 .toList();
     }
 
-    public static List<Integer> convertToIntegerList(String... list) {
+    private static List<Integer> convertToIntegerList(String... list) {
         return Arrays.stream(list)
                 .filter(s -> !Objects.equals(s, ""))
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private static int extractCardId(String str) {
+        var split = str.split(" ");
+        return Arrays.stream(split)
+                .filter(s -> !Objects.equals(s, "") && !Objects.equals(s, "Card"))
+                .findFirst()
+                .map(Integer::parseInt)
+                .orElse(-1);
     }
 }
